@@ -51,7 +51,7 @@ Run from the project root so shader paths resolve.
 | `shaders/bamboo.frag` | no | A shishi-odoshi, the bamboo garden fountain: the tube fills from a spout, tips, pours into a stone basin, swings back and clacks on a rock. |
 | `shaders/donut.frag` | no | A raymarched spinning donut. |
 | `shaders/rings.frag` | no | An animated ring pattern with a glow that follows the cursor. Not dithered. |
-| `shaders/mandelbrot.frag` | no | An endless zoom into the Mandelbrot set, starting from the whole set and closing in on a five-armed hub. It stays sharp at any depth: see the comment at the top of the shader. Not dithered. |
+| `shaders/mandelbrot.frag` | no | An endless zoom into the Mandelbrot set: two minutes down through filaments and spirals towards a copy of the set a trillion times smaller, then a fade into that copy and on again. The frame rate is drawn in the top-left corner. How it stays sharp is in the comment at the top of the shader. Not dithered. |
 
 ### Camera access
 
@@ -74,6 +74,7 @@ whichever of these uniforms you need; the host fills them in:
 | `uResolution` | `vec2` | framebuffer size in pixels |
 | `uTime` | `float` | seconds since start |
 | `uMouse` | `vec2` | cursor in pixels, origin bottom-left |
+| `uFps` | `float` | frames per second, averaged over the last half second |
 | `uCamera` | `sampler2D` | live camera frame, top row first |
 | `uCameraSize` | `vec2` | camera frame size in pixels |
 | `uHistory` | `sampler2DArray` | recent camera frames, one per layer, shrunk to about 320 px wide |

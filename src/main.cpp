@@ -175,6 +175,11 @@ int main(int argc, char** argv) {
     Ball ball;
     double lastTime = glfwGetTime();
 
+    // Frame rate for `uFps`, counted over half-second windows so it is readable.
+    double fpsSince = lastTime;
+    int fpsFrames = 0;
+    float fps = 0.0f;
+
     for (long frame = 0; !glfwWindowShouldClose(window); ++frame) {
         if (maxFrames >= 0 && frame >= maxFrames) break;
 
@@ -219,12 +224,19 @@ int main(int argc, char** argv) {
         double now = glfwGetTime();
         float dt = float(now - lastTime);
         lastTime = now;
+        fpsFrames++;
+        if (now - fpsSince >= 0.5) {
+            fps = float(fpsFrames / (now - fpsSince));
+            fpsSince = now;
+            fpsFrames = 0;
+        }
 
         glViewport(0, 0, w, h);
         glClear(GL_COLOR_BUFFER_BIT);
         glUseProgram(program);
         glUniform2f(glGetUniformLocation(program, "uResolution"), float(w), float(h));
         glUniform1f(glGetUniformLocation(program, "uTime"), float(now));
+        glUniform1f(glGetUniformLocation(program, "uFps"), fps);
         glUniform2f(glGetUniformLocation(program, "uMouse"), float(mx) * sx, float(h) - float(my) * sy);
 
         glUniform1i(cameraLoc, 0);
