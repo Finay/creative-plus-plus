@@ -51,6 +51,7 @@ Run from the project root so shader paths resolve.
 | `shaders/bamboo.frag` | no | A shishi-odoshi, the bamboo garden fountain: the tube fills from a spout, tips, pours into a stone basin, swings back and clacks on a rock. |
 | `shaders/donut.frag` | no | A raymarched spinning donut. |
 | `shaders/rings.frag` | no | An animated ring pattern with a glow that follows the cursor. Not dithered. |
+| `shaders/mandelbrot.frag` | no | An endless zoom into the Mandelbrot set, starting from the whole set and closing in on a five-armed hub. It stays sharp at any depth: see the comment at the top of the shader. Not dithered. |
 
 ### Camera access
 
@@ -91,7 +92,7 @@ uses `uCamera` or `uHistory`, and the ball is simulated when a shader uses
 `uBall`.
 
 Constants at the top of each shader (`ROWS`, `CONTRAST`, `TINT`, `MAX_DELAY`,
-`CYCLE`) apply on save. The ball's physics constants are at the top of
+`CYCLE`, `DOUBLING`) apply on save. The ball's physics constants are at the top of
 `src/ball.h` and take effect on the next `make run`.
 
 ## Layout
